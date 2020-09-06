@@ -1,0 +1,13 @@
+body{
+    margin: auto;
+    max-width: 500px;
+  }
+  
+  .grid{
+    background-color: lightgray;
+    border: 1px solid red;
+    height: 500px;
+    width: 500px;
+    display: grid;
+  }
+  
