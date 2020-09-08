@@ -1,13 +1,18 @@
 body{
     margin: auto;
-    max-width: 500px;
+    max-width: 600px;
   }
   
   .grid{
-    background-color: lightgray;
-    border: 1px solid black;
-    height: 500px;
-    width: 500px;
+    border: 2px solid black;
+    height: 600px;
+    width: 600px;
     display: grid;
+    margin-top: 100px;
+  }
+
+  .buttons{
+    margin-top: 40px;
+    text-align: center;
   }
   
