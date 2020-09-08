@@ -1,7 +1,9 @@
 //declaring the necessary variables
 let length = 16;
+let gridLines = true;
 const gridContainer = document.querySelector(".grid");
 const buttons = document.querySelector(".buttons");
+
 
 //------------------------------------------------------------------------------------------------------------------------------------------------
 /////////CAN ADD A BUTTON TO REMOVE THE LINES WITHIN THE GRID------------------------------------------------------------------------
@@ -10,10 +12,21 @@ const buttons = document.querySelector(".buttons");
 
 
 //running the function makeGrid to make the first grid when the page opens (when the script is first run)
-makeGrid(length);
+makeGrid(length, gridLines);
+
+//function to clear the grid
+function clearGrid(gridLines){
+    let oldGrid = document.querySelectorAll(".grid-box");
+    if(gridLines){
+        oldGrid.forEach(sqaure => sqaure.style.cssText = "background-color: white; border: 1px solid lightgray");
+    }
+    else {
+        oldGrid.forEach(sqaure => sqaure.style.cssText = "background-color: white; border: 1px solid transparent");
+    }
+}
 
 //function for making the grid
-function makeGrid(length){
+function makeGrid(length, gridLines){
 
     //reseting the gridTemplateColumns for repetive use
     gridContainer.style.gridTemplateColumns = "";
@@ -22,7 +35,15 @@ function makeGrid(length){
     for(let i = 0; i < (length*length); i++){
     let gridBox = document.createElement("div");
     gridBox.classList.add("grid-box");
-    gridBox.style.cssText = "background-color: white; border: 1px solid lightgray";
+
+    //condition on whether to add to remove grid lines
+    if(gridLines){
+        gridBox.style.cssText = "background-color: white; border: 1px solid lightgray";
+    }
+    else{
+        gridBox.style.cssText = "background-color: white; border: 1px solid transparent";
+    }
+
     gridContainer.append(gridBox);
     }
 
@@ -45,7 +66,8 @@ buttons.addEventListener("click", function(e){
     let clickedButton = e.target;
     
     //checking which button is clicked
-    if(clickedButton.id == "reset"){
+
+    if(clickedButton.id == "resize"){
         sideLength = parseInt(prompt("Enter the length of the new grid:", 16));
 
         //checking whether the input was a number
@@ -60,6 +82,27 @@ buttons.addEventListener("click", function(e){
 
         //making the new grid
         makeGrid(sideLength);
+    }
+
+    else if(clickedButton.id == "reset"){
+        clearGrid();
+    }
+
+    else if(clickedButton.id == "gridLines"){
+        let gridLinesButton = document.querySelector("#gridLines");
+        
+        //to toggle between on and off
+        gridLines = !gridLines;
+        
+        if(gridLines){
+            gridLinesButton.textContent = "Lines Off";
+        }
+        else{
+            gridLinesButton.textContent = "Lines On";
+        }
+
+        //removing/adding the lines
+        clearGrid(gridLines);
     }
 });
 
