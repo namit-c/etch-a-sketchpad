@@ -85,7 +85,7 @@ buttons.addEventListener("click", function(e){
     }
 
     else if(clickedButton.id == "reset"){
-        clearGrid();
+        clearGrid(gridLines);
     }
 
     else if(clickedButton.id == "gridLines"){
