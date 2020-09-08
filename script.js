@@ -3,6 +3,11 @@ let length = 16;
 const gridContainer = document.querySelector(".grid");
 const buttons = document.querySelector(".buttons");
 
+//------------------------------------------------------------------------------------------------------------------------------------------------
+/////////CAN ADD A BUTTON TO REMOVE THE LINES WITHIN THE GRID------------------------------------------------------------------------
+//CAN ADD A BUTTON FOR RESIZE THAT IS DIFFERENT THAT CLEAR GRID
+//------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 //running the function makeGrid to make the first grid when the page opens (when the script is first run)
 makeGrid(length);
@@ -29,9 +34,9 @@ function makeGrid(length){
 
 //event listener to colour the grid whenever the mouse moves over it
 gridContainer.addEventListener("mouseover", function(e){
-    //if statement to make sure the grid container does not get coloured red; only the divs inside it
+    //"if" statement is to make sure the grid container does not get coloured red; only the divs inside it
     if(e.target != gridContainer){
-        e.target.style.cssText += "background-color: aqua; border-color: transparent";
+        e.target.style.cssText += "background-color: #2d2d2d; border-color: transparent";
     }
 });
 
@@ -48,14 +53,14 @@ buttons.addEventListener("click", function(e){
             sideLength = parseInt(prompt("Please enter the length of the new grid:", 16));;
             console.log(sideLength <= 0);
         }
+
+        //removing the previously made div
+        let oldGrid = document.querySelectorAll(".grid-box");
+        oldGrid.forEach(sqaure => sqaure.parentElement.removeChild(sqaure));
+
+        //making the new grid
+        makeGrid(sideLength);
     }
-
-    //removing the previously made div
-    let oldGrid = document.querySelectorAll(".grid-box");
-    oldGrid.forEach(sqaure => sqaure.parentElement.removeChild(sqaure));
-
-    //making the new grid
-    makeGrid(sideLength);
 });
 
 
