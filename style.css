@@ -1,24 +1,49 @@
 html{
-  background: linear-gradient(0deg, rgba(176,255,237,1) 0%, rgba(249,249,249,1) 100%); 
+  background: #52ddff61;
   height: 100%;
 }
 
 body{
-    margin: auto;
-    max-width: 550px; 
-  }
+  margin: auto;
+  max-width: 550px; 
+}
   
-  .grid{
-    border: 5px solid rgb(0 109 84 / 64%);
-    border-radius: 5px;
-    height: 550px;
-    width: 550px;
-    display: grid;
-    margin-top: 100px;
-  }
+#title{
+  text-align-last: center;
+}
+  
+.grid{
+  border: 5px solid #2b7688;
+  border-radius: 5px;
+  height: 550px;
+  width: 550px;
+  display: grid;
+  margin-top: 100px;
+}
 
-  .buttons{
-    margin-top: 40px;
-    text-align: center;
-  }
+.grid:hover{
+  border-color: white;
+}
+
+.buttons{
+  margin-top: 40px;
+  text-align: center;
+}
+
+button{
+  padding: 7px 10px 7px 10px;
+  width: 100px;
+  background-color: white;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+
+button:hover{
+  background-color: #004758;
+  color: white;
+}
+
+button:focus{
+  outline: none;
+}
   
