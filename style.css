@@ -1,12 +1,18 @@
+html{
+  background: linear-gradient(0deg, rgba(176,255,237,1) 0%, rgba(249,249,249,1) 100%); 
+  height: 100%;
+}
+
 body{
     margin: auto;
-    max-width: 600px;
+    max-width: 550px; 
   }
   
   .grid{
-    border: 2px solid black;
-    height: 600px;
-    width: 600px;
+    border: 5px solid rgb(0 109 84 / 64%);
+    border-radius: 5px;
+    height: 550px;
+    width: 550px;
     display: grid;
     margin-top: 100px;
   }
