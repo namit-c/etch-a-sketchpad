@@ -5,14 +5,9 @@ const gridContainer = document.querySelector(".grid");
 const buttons = document.querySelector(".buttons");
 
 
-//------------------------------------------------------------------------------------------------------------------------------------------------
-/////////CAN ADD A BUTTON TO REMOVE THE LINES WITHIN THE GRID------------------------------------------------------------------------
-//CAN ADD A BUTTON FOR RESIZE THAT IS DIFFERENT THAT CLEAR GRID
-//------------------------------------------------------------------------------------------------------------------------------------------------
-
-
 //running the function makeGrid to make the first grid when the page opens (when the script is first run)
 makeGrid(length, gridLines);
+
 
 //function to clear the grid
 function clearGrid(gridLines){
@@ -81,7 +76,7 @@ buttons.addEventListener("click", function(e){
         oldGrid.forEach(sqaure => sqaure.parentElement.removeChild(sqaure));
 
         //making the new grid
-        makeGrid(sideLength);
+        makeGrid(sideLength, gridLines);
     }
 
     else if(clickedButton.id == "reset"){
@@ -93,15 +88,17 @@ buttons.addEventListener("click", function(e){
         
         //to toggle between on and off
         gridLines = !gridLines;
-        
-        if(gridLines){
-            gridLinesButton.textContent = "Lines Off";
-        }
-        else{
-            gridLinesButton.textContent = "Lines On";
-        }
 
         //removing/adding the lines
+        let oldGrid = document.querySelectorAll(".grid-box");
+        
+        if(gridLines){
+            gridLinesButton.textContent = "Lines On";
+        }
+        else{
+            gridLinesButton.textContent = "Lines Off";
+        }
+
         clearGrid(gridLines);
     }
 });
