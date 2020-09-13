@@ -5,7 +5,7 @@ html{
 
 body{
   margin: auto;
-  max-width: 550px; 
+  max-width: 500px; 
 }
   
 #title{
@@ -15,8 +15,8 @@ body{
 .grid{
   border: 5px solid #2b7688;
   border-radius: 5px;
-  height: 550px;
-  width: 550px;
+  height: 500px;
+  width: 500px;
   display: grid;
   margin-top: 40px;
 }
