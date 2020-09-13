@@ -1,6 +1,7 @@
 //declaring the necessary variables
 let length = 16;
 let gridLines = true;
+let black = "rgb(0, 0, 0)";
 let modeDefault = true;
 //let modeAdditive = false;
 const gridContainer = document.querySelector(".grid");
@@ -35,7 +36,7 @@ function makeGrid(length, gridLines){
 
     //condition on whether to add to remove grid lines
     if(gridLines){
-        gridBox.style.cssText = "background-color: white; border: 1px solid lightgray;";
+        gridBox.style.cssText = "background-color: white; border: 1px solid lightgray";
     }
     else{
         gridBox.style.cssText = "background-color: white; border: 1px solid transparent";
@@ -60,18 +61,18 @@ gridContainer.addEventListener("mouseover", function(e){
             e.target.style.cssText += "background-color: #2d2d2d; border-color: transparent";
         }
         else{
+            //selecting part of rgba that contains opacity
             let property = e.target.style.backgroundColor;
-            let opacity = (property.slice(property.indexOf("0.1"), property.indexOf(")")));
-            console.log(opacity);
-            if(isNaN(opacity)){
+            let opacity = parseFloat(property.slice(property.indexOf("0."), property.indexOf(")")));
+
+            //checking if the backgroundColor of the element has the opacity section and that it's not the colour black
+            if(isNaN(opacity) && property != black){
                 e.target.style.cssText = "background-color: rgba(0, 0, 0, 0.1)";
             }
             else{
-                console.log("made it here");
                 opacity += 0.1;
-                console.log(opacity);
                 e.target.style.backgroundColor = "rgba(0, 0, 0, " + opacity.toString() + ")";
-            } 
+            }
         }
     }
 });
