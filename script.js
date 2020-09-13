@@ -81,13 +81,16 @@ gridContainer.addEventListener("mouseover", function(e){
             let property = e.target.style.backgroundColor;
             let opacity = parseFloat(property.slice(property.indexOf("0."), property.indexOf(")")));
 
+
             //checking if the backgroundColor of the element has the opacity section and that it's not the colour black
             if(isNaN(opacity) && property != black){
                 e.target.style.cssText = "background-color: rgba(0, 0, 0, 0.1); border: 1px solid transparent";
             }
             else{
-                opacity += 0.1;
-                e.target.style.cssText = "background-color: rgba(0, 0, 0, " + opacity + "); border: 1px solid transparent'";
+                if(opacity < 1.0){
+                    opacity += 0.1;
+                    e.target.style.cssText = "background-color: rgba(0, 0, 0, " + opacity.toString() + "); border: 1px solid transparent";
+                }
             }
         }
     }
@@ -144,14 +147,17 @@ buttons.addEventListener("click", function(e){
 
     else if(clickedButton.id == "default"){
         mode = "default";
+        clickedButton.classList.add(".mode-active");
     }
 
     else if(clickedButton.id == "colourful"){
         mode = "colourful";
+        clickedButton.classList.add(".mode-active");
     }
 
     else if(clickedButton.id == "additive"){
         mode = "additive";
+        clickedButton.classList.add(".mode-active");
     }
 
     
