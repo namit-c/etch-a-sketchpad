@@ -2,8 +2,8 @@
 let length = 16;
 let gridLines = true;
 let black = "rgb(0, 0, 0)";
-let modeDefault = true;
-//let modeAdditive = false;
+const maxRGB = 255;
+let mode = "default";  //to select the mode to draw in 
 const gridContainer = document.querySelector(".grid");
 const buttons = document.querySelector(".buttons");
 
@@ -14,7 +14,10 @@ makeGrid(length, gridLines);
 
 //function to clear the grid
 function clearGrid(gridLines){
+
     let oldGrid = document.querySelectorAll(".grid-box");
+
+    //checking whether grid lines should be drawn
     if(gridLines){
         oldGrid.forEach(sqaure => sqaure.style.cssText = "background-color: white; border: 1px solid lightgray");
     }
@@ -31,18 +34,18 @@ function makeGrid(length, gridLines){
     
     //making div elements to be used as the squares in the grid
     for(let i = 0; i < (length*length); i++){
-    let gridBox = document.createElement("div");
-    gridBox.classList.add("grid-box");
+        let gridBox = document.createElement("div");
+        gridBox.classList.add("grid-box");
 
-    //condition on whether to add to remove grid lines
-    if(gridLines){
-        gridBox.style.cssText = "background-color: white; border: 1px solid lightgray";
-    }
-    else{
-        gridBox.style.cssText = "background-color: white; border: 1px solid transparent";
-    }
+        //condition on whether to add to remove grid lines
+        if(gridLines){
+            gridBox.style.cssText = "background-color: white; border: 1px solid lightgray";
+        }
+        else{
+            gridBox.style.cssText = "background-color: white; border: 1px solid transparent";
+        }
 
-    gridContainer.append(gridBox);
+        gridContainer.append(gridBox);
     }
 
     //setting up the grid columns to equal the length entered
@@ -53,14 +56,27 @@ function makeGrid(length, gridLines){
 
 //event listener to colour the grid whenever the mouse moves over it
 gridContainer.addEventListener("mouseover", function(e){
+
     //"if" statement is to make sure the grid container does not get coloured red; only the divs inside it
     if(e.target != gridContainer){
 
         //checking which mode the user is drawing on 
-        if(modeDefault){
-            e.target.style.cssText += "background-color: #2d2d2d; border-color: transparent";
+        if(mode == "default"){
+            e.target.style.cssText = "background-color: #2d2d2d";
         }
-        else{
+
+        else if(mode == "colourful"){
+            let red = Math.random() * 255;
+            let green = Math.random() * 255;
+            let blue = Math.random() * 255;
+            //let alpha = Math.random();
+            let colour = "rgba(" + red + ", " + green + ", " + blue + ")";
+            e.target.style.cssText = "background-color: " + colour;
+        }
+
+        //double checking to make sure of the mode
+        else if(mode == "additive"){
+
             //selecting part of rgba that contains opacity
             let property = e.target.style.backgroundColor;
             let opacity = parseFloat(property.slice(property.indexOf("0."), property.indexOf(")")));
@@ -127,12 +143,18 @@ buttons.addEventListener("click", function(e){
     }
 
     else if(clickedButton.id == "default"){
-        modeDefault = true;
+        mode = "default";
+    }
+
+    else if(clickedButton.id == "colourful"){
+        mode = "colourful";
     }
 
     else if(clickedButton.id == "additive"){
-        modeDefault = false;
+        mode = "additive";
     }
+
+    
 });
 
 
