@@ -1,6 +1,8 @@
 //declaring the necessary variables
 let length = 16;
 let gridLines = true;
+let modeDefault = true;
+//let modeAdditive = false;
 const gridContainer = document.querySelector(".grid");
 const buttons = document.querySelector(".buttons");
 
@@ -33,7 +35,7 @@ function makeGrid(length, gridLines){
 
     //condition on whether to add to remove grid lines
     if(gridLines){
-        gridBox.style.cssText = "background-color: white; border: 1px solid lightgray";
+        gridBox.style.cssText = "background-color: white; border: 1px solid lightgray;";
     }
     else{
         gridBox.style.cssText = "background-color: white; border: 1px solid transparent";
@@ -52,7 +54,25 @@ function makeGrid(length, gridLines){
 gridContainer.addEventListener("mouseover", function(e){
     //"if" statement is to make sure the grid container does not get coloured red; only the divs inside it
     if(e.target != gridContainer){
-        e.target.style.cssText += "background-color: #2d2d2d; border-color: transparent";
+
+        //checking which mode the user is drawing on 
+        if(modeDefault){
+            e.target.style.cssText += "background-color: #2d2d2d; border-color: transparent";
+        }
+        else{
+            let property = e.target.style.backgroundColor;
+            let opacity = (property.slice(property.indexOf("0.1"), property.indexOf(")")));
+            console.log(opacity);
+            if(isNaN(opacity)){
+                e.target.style.cssText = "background-color: rgba(0, 0, 0, 0.1)";
+            }
+            else{
+                console.log("made it here");
+                opacity += 0.1;
+                console.log(opacity);
+                e.target.style.backgroundColor = "rgba(0, 0, 0, " + opacity.toString() + ")";
+            } 
+        }
     }
 });
 
@@ -65,18 +85,21 @@ buttons.addEventListener("click", function(e){
     if(clickedButton.id == "resize"){
         sideLength = parseInt(prompt("Enter the length of the new grid:", 16));
 
-        //checking whether the input was a number
-        while((typeof sideLength != "number") || (sideLength <= 0)){
-            sideLength = parseInt(prompt("Please enter the length of the new grid:", 16));;
-            console.log(sideLength <= 0);
+        //Only draw the new grid if the cancel button is not pressed
+        if(!isNaN(sideLength)){
+            //checking whether the input was a number
+            while((typeof sideLength != "number") || (sideLength <= 0)){
+                sideLength = parseInt(prompt("Please enter the length of the new grid:", 16));;
+                console.log(sideLength <= 0);
+            }
+
+            //removing the previously made div
+            let oldGrid = document.querySelectorAll(".grid-box");
+            oldGrid.forEach(sqaure => sqaure.parentElement.removeChild(sqaure));
+
+            //making the new grid
+            makeGrid(sideLength, gridLines);
         }
-
-        //removing the previously made div
-        let oldGrid = document.querySelectorAll(".grid-box");
-        oldGrid.forEach(sqaure => sqaure.parentElement.removeChild(sqaure));
-
-        //making the new grid
-        makeGrid(sideLength, gridLines);
     }
 
     else if(clickedButton.id == "reset"){
@@ -100,6 +123,14 @@ buttons.addEventListener("click", function(e){
         }
 
         clearGrid(gridLines);
+    }
+
+    else if(clickedButton.id == "default"){
+        modeDefault = true;
+    }
+
+    else if(clickedButton.id == "additive"){
+        modeDefault = false;
     }
 });
 
