@@ -62,7 +62,7 @@ gridContainer.addEventListener("mouseover", function(e){
 
         //checking which mode the user is drawing on 
         if(mode == "default"){
-            e.target.style.cssText = "background-color: #2d2d2d";
+            e.target.style.cssText = "background-color: #2d2d2d; border: 1px solid transparent";
         }
 
         else if(mode == "colourful"){
@@ -71,7 +71,7 @@ gridContainer.addEventListener("mouseover", function(e){
             let blue = Math.random() * 255;
             //let alpha = Math.random();
             let colour = "rgba(" + red + ", " + green + ", " + blue + ")";
-            e.target.style.cssText = "background-color: " + colour;
+            e.target.style.cssText = "background-color: " + colour + "; border: 1px solid transparent";
         }
 
         //double checking to make sure of the mode
@@ -83,11 +83,11 @@ gridContainer.addEventListener("mouseover", function(e){
 
             //checking if the backgroundColor of the element has the opacity section and that it's not the colour black
             if(isNaN(opacity) && property != black){
-                e.target.style.cssText = "background-color: rgba(0, 0, 0, 0.1)";
+                e.target.style.cssText = "background-color: rgba(0, 0, 0, 0.1); border: 1px solid transparent";
             }
             else{
                 opacity += 0.1;
-                e.target.style.backgroundColor = "rgba(0, 0, 0, " + opacity.toString() + ")";
+                e.target.style.cssText = "background-color: rgba(0, 0, 0, " + opacity + "); border: 1px solid transparent'";
             }
         }
     }
