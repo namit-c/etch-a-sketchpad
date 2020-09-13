@@ -56,3 +56,8 @@ button:active{
   margin-top: 5px;
   text-align: center;
 }
+
+/*Class to be added to a mode button whenever it is active*/
+.mode-active{
+  background-image: linear-gradient(#2b7688, #004758);
+}
