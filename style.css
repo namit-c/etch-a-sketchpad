@@ -47,6 +47,14 @@ button:active{
   background-image: linear-gradient(#2b7688, #004758);
 }
 
+#gridLines{
+  margin-left: 7px;
+}
+
+#colourful{
+  margin-left: 7px;
+}
+
 .sketch-functions{
   margin-top: 20px;
   text-align: center;
