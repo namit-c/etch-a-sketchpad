@@ -6,11 +6,12 @@ html{
 body{
   margin: auto;
   max-width: 500px; 
+  text-align: center;
 }
   
-#title{
+/* #title{
   text-align-last: center;
-}
+} */
   
 .grid{
   border: 5px solid #2b7688;
