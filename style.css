@@ -6,12 +6,10 @@ html{
 body{
   margin: auto;
   max-width: 500px; 
-  /* text-align: center; */
 }
   
 #title{
-  display: flex;
-  justify-content: center;
+  text-align: center;
 }
   
 .grid{
